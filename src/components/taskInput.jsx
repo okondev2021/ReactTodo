@@ -26,7 +26,7 @@ const TASKINPUT = () => {
         <div className="flex items-center w-full gap-4 px-4 rounded-md mt-9 mobile:mt-5 h-14 mobile:h-11 bg-light-100 dark:bg-dark-200">
             <label className="w-6 h-6 rounded-full mobile:h-5 mobile:w-5 border-1 border-light-200 dark:border-dark-400" htmlFor="taskInput"></label>
             <form className='w-full' onSubmit={(e) => addTask(e)}>
-                <input ref={inputref} name='taskInput' className="w-full outline-none mobile:text-xs dark:bg-dark-200 dark:text-light-400" placeholder="Create a new todo..." type="text" id="taskInput" />
+                <input ref={inputref} name='taskInput' className="w-full outline-none mobile:text-xs bg-light-100 dark:bg-dark-200 dark:text-light-400" placeholder="Create a new todo..." type="text" id="taskInput" />
             </form>
         </div>
     )

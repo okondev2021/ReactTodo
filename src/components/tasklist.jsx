@@ -41,19 +41,23 @@ const TASKLIST = () => {
     const deleteCompletedTasks = () => {
         db.todo.where('status').equals(1).delete()
     }
-
+    const querySelector = (
+        <>
+            <button onClick={ () => testing('all')} className='text-primary-Bright-Blue'>All</button>
+            <button className=' dark:text-light-400 text-light-400' onClick={ () => testing('pending')}>Active</button>
+            <button className=' dark:text-light-400 text-light-400' onClick={ () => testing('completed')}>Completed</button>
+        </>
+    )
     const taskFooter = (
         <div className='flex items-center justify-between p-4 text-xs'>
             <section className=' text-light-400'>
                 <p>{numberOfIncompleteTasks} items left</p>
             </section>
-            {/* <section className='flex items-center justify-between gap-3'>
-                <button onClick={ () => testing('all')} className='text-primary-Bright-Blue'>All</button>
-                <button onClick={ () => testing('pending')}>Active</button>
-                <button onClick={ () => testing('completed')}>Completed</button>
-            </section> */}
+            <section className='flex items-center justify-between gap-3'>
+                {screenWidth > 430 && querySelector}
+            </section>
             <section>
-                <p className='cursor-pointer mobile:text-light-400' onClick={deleteCompletedTasks}>Clear Completed</p>
+                <p className='cursor-pointer mobile:text-light-400 dark:text-light-400' onClick={deleteCompletedTasks}>Clear Completed</p>
             </section>
         </div>
     )
@@ -72,19 +76,24 @@ const TASKLIST = () => {
 
 
     return(
-        <div className='w-full my-6 font-medium rounded-md shadow-lg bg-light-100 dark:bg-dark-200'>
-            {query?.map( (task) => (
-                <div key={task.id} className='flex items-center gap-4 p-4 border-b-1 dark:border-dark-600'>
-                    <span onClick={() => completeTask(task.id)} className={` bg-transparent bg-primary-Check-Background h-6 w-6 mobile:h-5 mobile:w-5 rounded-full border-1 border-light-200 dark:border-dark-400 cursor-pointer hover:border-primary-Bright-Blue flex justify-center items-center ${task.status === 1 ? 'bg-gradient-to-r  from-left to-right': ' bg-light-100'}`}>
-                        {task.status === 1 && checkMarkImage}
-                    </span>
-                    <p className={`${task.status === 1 ? 'completeTask': 'inCompleteTask'} mobile:text-sm mobile:text-light-400`}>{task.task}</p>
+        <>
+            <div className='w-full my-6 font-medium rounded-md shadow-lg bg-light-100 dark:bg-dark-200'>
+                {query?.map( (task) => (
+                    <div key={task.id} className='flex items-center gap-4 p-4 border-b-1 dark:border-dark-600'>
+                        <span onClick={() => completeTask(task.id)} className={` bg-transparent h-6 w-6 mobile:h-5 mobile:w-5 rounded-full border-1 border-light-200 dark:border-dark-400 cursor-pointer hover:border-primary-Bright-Blue flex justify-center items-center ${task.status === 1 ? 'bg-gradient-to-r  from-left to-right': ' bg-light-100'}`}>
+                            {task.status === 1 && checkMarkImage}
+                        </span>
+                        <p className={`${task.status === 1 ? 'completeTask': 'inCompleteTask'} mobile:text-sm dark:text-light-400`}>{task.task}</p>
+                    </div>
+                ))}
+                <div>
+                    {tasksFooterDisplay? taskFooter: ""}
                 </div>
-            ))}
-            <div>
-                {tasksFooterDisplay? taskFooter: ""}
             </div>
-        </div>
+            <div className='items-center justify-center hidden w-full gap-4 p-4 mt-2 rounded-md shadow-md bg-light-100 dark:bg-dark-200 mobile:flex'>
+                {screenWidth <= 420 && querySelector}
+            </div>
+        </>
 
     )
 }

@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <section className='relative h-screen overflow-auto bg-light-100 dark:bg-dark-100'>
+    <section className='relative h-screen overflow-auto font-body bg-light-100 dark:bg-dark-100'>
       <div className={`heroSection w-full h-hero ${isLightTheme ? 'lightTheme': 'darkTheme'}`}></div>
       <main className='absolute top-0 left-0 flex justify-center w-full '>
         <TASKS themeChangeValue = {isLightTheme} themeChangeFunc = {themeChange} />

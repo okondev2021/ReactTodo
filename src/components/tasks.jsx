@@ -3,7 +3,7 @@ import TASKINPUT from "./taskInput"
 import TASKLIST from "./tasklist"
 const TASKS = (props) => {
     return(
-        <div className="w-[39%] mobile:w-[90%]">
+        <div className="w-[39%] md:w-[50%] mobile:w-[90%]">
             <section className="toggle">
                 <>
                     <TOGGLE themeChangeValue = {props.themeChangeValue} themeChangeFunc = {props.themeChangeFunc} />

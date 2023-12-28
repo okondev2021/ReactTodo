@@ -22,7 +22,8 @@ module.exports = {
     },
     extend: {
       height:{
-        "hero": "40vh"
+        "hero": "40vh",
+        "shortHero":"30vh"
       },
       colors:{
         'left':'hsl(192, 100%, 67%)',

@@ -48,6 +48,12 @@ const TASKLIST = () => {
             <button className=' dark:text-light-400 text-light-400' onClick={ () => testing('completed')}>Completed</button>
         </>
     )
+
+    const mobileQuery = (
+        <div className='items-center justify-center hidden w-full gap-4 p-4 mt-2 rounded-md shadow-md bg-light-100 dark:bg-dark-200 mobile:flex'>
+            {querySelector}
+        </div>
+    )
     const taskFooter = (
         <div className='flex items-center justify-between p-4 text-xs'>
             <section className=' text-light-400'>
@@ -90,9 +96,7 @@ const TASKLIST = () => {
                     {tasksFooterDisplay? taskFooter: ""}
                 </div>
             </div>
-            <div className='items-center justify-center hidden w-full gap-4 p-4 mt-2 rounded-md shadow-md bg-light-100 dark:bg-dark-200 mobile:flex'>
-                {screenWidth <= 420 && querySelector}
-            </div>
+            {tasksFooterDisplay && mobileQuery}
         </>
 
     )

@@ -18,7 +18,7 @@ const TASKLIST = () => {
     }, [tasks])
 
 
-    const testing = async (val) => {
+    const testing = async (event, val) => {
         if(val === 'all'){
             setquery(await db.todo.reverse().toArray())
         }
@@ -28,6 +28,13 @@ const TASKLIST = () => {
         else{
             setquery(await db.todo.where('status').equals(0).reverse().toArray())
         }
+
+        document.querySelectorAll('.querySec').forEach((querySec) => {
+            querySec.classList.remove('text-primary-Bright-Blue')
+            querySec.classList.add('text-light-400')
+        })
+        event.target.classList.add('text-primary-Bright-Blue')
+        
     }
 
     const completeTask = (id) => {
@@ -45,9 +52,9 @@ const TASKLIST = () => {
     }
     const querySelector = (
         <>
-            <button onClick={ () => testing('all')} className='text-primary-Bright-Blue'>All</button>
-            <button className=' dark:text-light-400 text-light-400' onClick={ () => testing('pending')}>Active</button>
-            <button className=' dark:text-light-400 text-light-400' onClick={ () => testing('completed')}>Completed</button>
+            <button onClick={ (e) => testing(e, 'all')} className='querySec text-primary-Bright-Blue '>All</button>
+            <button className='querySec text-light-400' onClick={ (e) => testing(e, 'pending')}>Active</button>
+            <button className='querySec text-light-400' onClick={ (e) => testing(e, 'completed')}>Completed</button>
         </>
     )
 
